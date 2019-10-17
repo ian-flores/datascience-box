@@ -1,3 +1,29 @@
+# Esfuerzo de Traduccion a Espa~ol
+
+# Data Science Empaquetado <img src="dsbox-logo.png" align="right" width="200px"/>
+
+## Descripcion del Curso
+
+## Contenidos
+
+## Recursos
+
+## Charlas
+
+## Articulos
+
+## Materiales de Ense~anza
+
+## Herramientas
+
+## Atribucion
+
+## Feedback
+
+
+<hr>
+# English Version 
+
 # Data Science Course in a Box <img src="dsbox-logo.png" align="right" width="200px" />
 
 ## Course description
