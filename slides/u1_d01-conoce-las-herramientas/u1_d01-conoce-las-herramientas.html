@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Conoce las herramientas   ⚒</title>
+    <meta charset="utf-8" />
+    <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Conoce las herramientas <br> ⚒
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://datasciencebox.org/" target="_blank"&gt;datasciencebox.org
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+class: center, middle
+
+# Analisis Reproducible de Datos
+
+---
+
+## Lista de Cotejo de Reproducibilidad
+
+.question[
+Que significa que un analisis de datos es reproducible?
+]
+
+--
+
+Metas a corto plazo:
+
+- Se pueden reproducir las tablas y las figuras del codigo y los datos?
+- El codigo hace lo que tu crees que hace?
+- En adicion a lo que se hace, es claro **por que** se hizo?
+(ej. como se escogio la configuracion de parametros?)
+
+Metas a largo plazo:
+
+- Se puede usar el codigo con otros datos?
+- Se puede extender el codigo a hacer otras cosas?
+
+---
+
+## Herramientas
+
+![toolkit](img/toolkit.png)
+
+- Capacidad de escritura `\(\rightarrow\)` R
+- Programación literada (código, narrativa, output en un lugar) `\(\rightarrow\)` R Markdown
+- Version control `\(\rightarrow\)` Git / GitHub
+
+---
+
+class: center, middle
+
+# R y RStudio
+
+---
+
+## Que es R/RStudio?
+
+- R es un lenguaje de programación estadística
+- RStudio es una interfaz conveniente para R (un entorno de desarrollo integrado, IDE)
+- En su forma más simple: &lt;sup&gt; ➥ &lt;/sup&gt;
+  - R es como el motor de un carro
+  - RStudio es como el dash del carro
+
+&lt;img src="img/engine-dashboard.png" width="420" style="display: block; margin: auto;" /&gt;
+
+.footnote[
+➥ Fuente:[Modern Dive](https://moderndive.com/)
+]
+
+---
+
+## Recorrido - R / RStudio
+
+.center[
+![](../img/demo.png)
+]
+
+Conceptos introducidos:
+
+- Consola
+- Usando R como calculadora
+- Environment
+- Cargando y viendo un data frame
+- Acceder a una variable en un data frame
+- Funciones en R
+
+---
+
+## Esencial de R
+
+Una breve lista (por ahora):
+
+- Las funciones son (la mayoría de las veces) verbos, seguidos de a qué se aplicarán en paréntesis:
+
+
+```r
+haz_esto(a_esto)
+haz_esto(a_esto, a_aquello, con_eso)
+```
+
+--
+
+- Se accede a las columnas (variables) en data frames con `$`:
+
+
+```r
+dataframe$nombre_variable
+```
+
+--
+
+- Los paquetes se instalan con la función `install.packages` y se cargan con la función` library`, una vez por sesión:
+
+
+```r
+install.packages("nombre_paquete")
+library(nombre_paquete)
+```
+
+---
+
+## tidyverse
+
+.pull-left[
+![](img/tidyverse.png)
+]
+
+.pull-right[
+.center[
+[tidyverse.org](https://www.tidyverse.org/)
+]
+
+- El tidyverse es una colección opinionada de paquetes en R diseñados para la ciencia de datos.
+- Todos los paquetes comparten una filosofía subyacente y una gramática común.
+]
+
+---
+
+class: center, middle
+
+# R Markdown
+
+---
+
+
+## R Markdown
+
+- Informes totalmente reproducibles: cada vez que se teje ('knit'), el análisis se ejecuta desde el principio
+- Sintaxis de markdown simple para texto
+- El código va en fragmentos (chunks), definido por tres backticks, la narración va afuera de los fragmentos (chunks)
+
+---
+
+## Recorrido - R Markdown
+
+
+.center[
+![](../img/demo.png)
+]
+
+Conceptos introducidos:
+
+- Copiar un proyecto mío
+- Tejer documenros
+- R Markdown y (alguna) sintaxis de R
+
+---
+
+## &lt;i class="fas fa-laptop"&gt;&lt;/i&gt; `EA 02 - Bechdel`
+
+.question[
+¿Qué es la prueba de Bechdel?
+]
+
+--
+
+La prueba de Bechdel pregunta si una obra de ficción presenta al menos a dos mujeres que hablan entre sí sobre algo que no sea un hombre, y debe haber dos mujeres nombradas personajes.
+
+--
+
+&lt;br&gt;
+
+- Vaya a RStudio Cloud y haga una copia del proyecto de ejercicio de la aplicación y ejecútelo.
+- Abrir y tejer el documento R Markdown.
+
+---
+
+## Ayuda para R Markdown
+
+.pull-left[
+.center[
+[Cheat Sheet de R Markdown](https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/rmarkdown_Spanish.pdf)
+]
+![](img/rmd-cheatsheet.png)
+]
+.pull-right[
+.center[
+Markdown Quick Reference  
+`Help -&gt; Markdown Quick Reference`
+]
+![](img/md-cheatsheet.png)
+]
+
+---
+
+## Espacios de trabajo
+
+Recuerda esto y espera que te muerda algunas veces mientras aprendes a trabajar
+con R Markdown: ¡El espacio de trabajo de tu documento R Markdown está separado de la consola!
+
+- Ejecuta lo siguiente en la consola
+
+```r
+x &lt;- 2
+x * 3
+```
+
+.question[
+Todo se ve bien, ¿ah?
+]
+
+- Luego, agregue el siguiente fragmento en su documento de R Markdown
+
+
+```r
+x * 3
+```
+.question[
+¿Que pasa? ¿Por qué el error?
+]
+
+---
+
+## ¿Cómo usaremos R Markdown?
+
+- Cada tarea / informe / proyecto / etc. es un documento de R Markdown
+- Siempre tendrá un template de documento R Markdown para comenzar
+- La cantidad de ayudas en los templates disminuirá durante el semestre
+
+---
+
+class: center, middle
+
+# Git y GitHub
+
+---
+
+## Version Control
+
+- Presentamos GitHub como una plataforma de colaboración.
+- Pero es mucho más que eso ...
+- En realidad está diseñado para el control de versiones
+
+---
+
+## Versionar
+
+&lt;img src="img/lego-steps.png" width="1200" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Versionar
+
+con mensajes legibles para los humanos
+
+&lt;img src="img/lego-steps-commit-messages.png" width="1200" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Por que necesitamos version control?
+
+&lt;img src="img/phd_comics_vc.gif" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Tips para Git y GitHub
+
+- Git es un sistema de control de versiones, como las funciones de "Seguimiento de cambios" de Microsoft Word con esteroides. GitHub es el hogar de tus proyectos basados en Git en Internet, como DropBox pero mucho, mucho mejor).
+--
+
+- Hay millones de comandos git - ok, eso es una exageración, pero hay muchos de ellos - y muy pocas personas los conocen todos. El 99% del tiempo usaras git para agregar (add), confirmar (commit), empujar (push) y halar (pull).
+
+---
+
+# Tips para Git y GitHub
+
+- Haremos cosas de Git e interactuaremos con GitHub a través de RStudio, pero si buscas ayuda en Google, podrías encontrar métodos para hacer estas cosas en la línea de comandos: salta eso y pasa al siguiente recurso a menos que te sientas cómodo probándolo fuera.
+--
+
+- Hay un gran recurso para trabajar con git y R: [happygitwithr.com] (http://happygitwithr.com/). Parte del contenido allí está más allá del alcance de este curso, pero es un buen lugar para buscar ayuda.
+
+---
+
+## Recorrido - Git y GitHub
+
+.center[
+![](../img/demo.png)
+]
+
+- Conceptos introducidos:
+  - Conectar un proyecto R al repositorio de Github
+  - Trabajar con un repositorio local y remoto
+  - Hacer un cambio localmente, commit y push
+  - Hacer un cambio en GitHub y pull
+- Solo hay un poco más de GitHub que usaremos en esta clase, pero por hoy es suficiente
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true,
+"highlightStyle": "solarized-dark",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
