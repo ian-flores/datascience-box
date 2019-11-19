@@ -1,5 +1,5 @@
 ---
-title: "Data and visualization <br> `r emo::ji('chart_with_downwards_trend')`"
+title: "Datos y visualización <br> `r emo::ji('chart_with_downwards_trend')`"
 author: ""
 output:
   xaringan::moon_reader:
@@ -23,31 +23,31 @@ library(magick)
 
 class: center, middle
 
-# Exploratory data analysis
+# Analisis Exploratorio de Datos (EDA)
 
 ---
 
-## What is EDA?
+## Que es EDA?
 
-- Exploratory data analysis (EDA) is an aproach to analyzing data sets to summarize its main characteristics.
-- Often, this is visual. That's what we're focusing on today.
-- But we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the 
-analysis. That's what we'll focus on next.
+- Analisis exploratorio de datos (EDA) es un acercamiento a analizar conjuntos de datos que se enfoca en resumir sus principales caracteristicas.
+- Usualmente, esto es visual. En eso nos enfocaremos hoy.
+- Pero también podríamos calcular estadísticas de tendencia central y realizar manipulaciones/transformaciones de los datos en (o antes) de esta etapa del
+análisis. En eso nos centraremos a continuación.
 
 ---
 
 class: center, middle
 
-# Data visualization
+# Visualizacion de Datos
 
 ---
 
-## Data visualization
+## Visualizacion de Datos
 
-> *"The simple graph has brought more information to the data analyst’s mind than any other device." — John Tukey*
+> *"La gráfica simple ha traído más información a la mente del analista de datos que cualquier otro dispositivo." — John Tukey*
 
-- Data visualization is the creation and study of the visual representation of data.
-- There are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (**ggplot2** is one of them, and that's what we're going to use).
+- La visualización de datos es la creación y el estudio de la representación visual de datos.
+- Hay muchas herramientas para visualizar datos (R es una de ellas), y muchos enfoques / sistemas dentro de R para hacer visualizaciones de datos (** ggplot2 ** es una de ellas, y eso es lo que vamos a usar).
 
 ---
 
@@ -57,84 +57,85 @@ class: center, middle
 ![](img/ggplot2-part-of-tidyverse.png)
 ]
 .pull-right[
-- **ggplot2** is tidyverse's data visualization package
-- The `gg` in "ggplot2" stands for Grammar of Graphics
-- It is inspired by the book **Grammar of Graphics** by Leland Wilkinson <sup>†</sup>
-- A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
+- **ggplot2** es un paquete de visualizacion de datos parte del tidyverse.
+- La `gg` en "ggplot2" significa Grammar of Graphics
+- Esta inspirado en el libro **Grammar of Graphics** por Leland Wilkinson <sup>†</sup>
+- Una gramatica de graficos es una herramienta que nos permite describir de manera concisa los componentes de una grafica.
+
 ![](img/grammar-of-graphics.png)
+
 ]
 
 .footnote[ 
-<sup>†</sup> Source: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-grammar-of-graphics.html)
+<sup>†</sup> Fuente: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-grammar-of-graphics.html)
 ]
 
 ---
 
 .question[
-What are the functions doing the plotting? What is the dataset being plotted? 
-Which variable is on the x-axis and which variable is on the y-axis? What does 
-the warning mean?
+¿Cuáles son las funciones haciendo el trazado? ¿Cuál es el conjunto de datos que se está trazando?
+¿Qué variable está en el eje de x y qué variable está en el eje de y? Que significa la advertencia?
 ]
 
 ```{r fig.width = 6, fig.height=2.75}
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
-  geom_point() +
-  labs(title = "Mass vs. height of Starwars characters",
-       x = "Height (cm)", y = "Weight (kg)")
+  geom_point() + #<<
+  labs(title = "Masa vs Altura de personajes de Starwars",
+       x = "Altura (cm)", y = "Peso (kg)")
 ```
 
 ---
 
 .question[
-What does `geom_smooth()` do? What else changed between the previous plot and 
-this one?
+Que hace `geom_smooth()`? Que mas ha cambiado entre la grafica anterior y esta?
 ]
 
 ```{r fig.width = 6, fig.height=3, warning=FALSE, message=FALSE}
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_point() +
   geom_smooth() + #<<
-  labs(title = "Mass vs. height of Starwars characters",
-       x = "Height (cm)", y = "Weight (kg)")
+  labs(title = "Masa vs Altura de personajes de Starwars",
+       x = "Altura (cm)", y = "Peso (kg)")
 ```
 
 ---
 
-## Hello ggplot2!
+## Hola ggplot2!
 
-- `ggplot()` is the main function in ggplot2 and plots are constructed in layers
-- The structure of the code for plots can often be summarized as
+- `ggplot()` es la funcion principal en ggplot2 y las graficas se construyen en capas.
+- La estructura del codigo para las graficas se puede resumir muchas veces como
+
 ```{r eval = FALSE}
 ggplot + 
   geom_xxx
 ```
 
-or, more precisely
+o, de forma mas precisa
 .small[
 ```{r eval = FALSE}
 ggplot(data = [dataset], mapping = aes(x = [x-variable], y = [y-variable])) +
    geom_xxx() +
-   other options
+   otras_opciones
 ```
 ]
-- To use ggplot2 functions, first load tidyverse
+- Para usar funciones de `ggplot2`, primero sube el `tidyverse`
 ```{r}
 library(tidyverse)
 ```
-- For help with the ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
+- Para ayuda con ggplot2, mirar [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org)
 
 ---
 
 class: center, middle
 
-# Visualizing Star Wars
+# Visualizando Star Wars
 
 ---
 
-## Dataset terminology
+## Terminologia de Dataset
 
 .question[
-What does each row represent? What does each column represent?
+¿Qué representa cada fila? ¿Qué representa cada columna?
 ]
 
 .small[
@@ -145,8 +146,8 @@ starwars
 
 --
 
-- Each row is an **observation**
-- Each column is a **variable**
+- Cada fila es una ** observación **
+- Cada columna es una ** variable **
 
 ---
 
@@ -156,22 +157,22 @@ starwars
 
 ---
 
-## What's in the Star Wars data?
+## ¿Qué hay en los datos de Star Wars?
 
-Take a `glimpse` at the data: 
+Vamos a ver los datos con la funcion `glimpse`:
 ```{r}
 glimpse(starwars)
 ```
 
 ---
 
-## What's in the Star Wars data?
+## ¿Qué hay en los datos de Star Wars?
 
 .question[
-How many rows and columns does this dataset have? What does each row represent? What does each column represent?
+¿Cuántas filas y columnas tiene este dataset? ¿Qué representa cada fila? ¿Qué representa cada columna?
 ]
 
-Run the following **in the Console** to view the help
+Ejecute lo siguiente ** en la Consola ** para ver la ayuda
 ```{r eval = FALSE}
 ?starwars
 ```
@@ -182,7 +183,7 @@ knitr::include_graphics("img/starwars-help.png")
 
 ---
 
-## Mass vs. height
+## Masa vs. altura
 
 ```{r fig.width = 6, fig.height=3}
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
@@ -191,30 +192,30 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 
 ---
 
-## What's that warning?
+## ¿Qué es esa advertencia?
 
-- Not all characters have height and mass information (hence 28 of them not plotted)
+- No todos los personajes tienen información de altura y masa (por lo tanto, 28 de ellos no están trazados)
 
 ```
 ## Warning: Removed 28 rows containing missing values (geom_point).
 ```
 
-- Going forward I'll supress the warning to save room on slides, but it's important to note it
+- En adelante, suprimiré la advertencia para ahorrar espacio en las diapositivas, pero es importante tenerlo en cuenta
 
 ---
 
-## Mass vs. height
+## Masa vs. altura
 
 .question[
-How would you describe this relationship? What other variables would help us understand data points that don't follow the overall trend? Who is the not so tall but really chubby character?
+¿Cómo describirías esta relación? ¿Qué otras variables nos ayudarían a comprender los puntos de datos que no siguen la tendencia general? ¿Quién es el personaje no tan alto pero realmente gordo?
 ]
 
 .small[
 ```{r fig.width = 6, fig.height=2.75, warning=FALSE}
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_point() +
-  labs(title = "Mass vs. height of Starwars characters", #<<
-       x = "Height (cm)", y = "Weight (kg)")             #<<
+  labs(title = "Masa vs. altura de los personajes de Starwars", #<<
+       x = "Altura (cm)", y = "Peso (kg)")             #<<
 ```
 ]
 
@@ -227,9 +228,9 @@ jabba <- image_read("img/jabba.png")
 
 fig <- image_graph(width = 2400, height = 1200, res = 300)
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
-  geom_point(size = 1.5) + 
-  labs(title = "Mass vs. height of Starwars characters",
-       x = "Height (cm)", y = "Weight (kg)")
+  geom_point(size = 1.5) +
+  labs(title = "Masa vs. altura de los personajes de Starwars", #<<
+       x = "Altura (cm)", y = "Peso (kg)")
 dev.off()
 
 out <- fig %>% image_composite(jabba, offset = "+1000+30")
@@ -240,38 +241,40 @@ knitr::include_graphics("img/jabbaplot.png")
 
 ---
 
-## Additional variables
+## Variables adicionales
 
 We can map additional variables to various features of the plot:
 
-- aesthetics
-    - shape
-    - colour
-    - size
-    - alpha (transparency)
-- faceting: small multiples displaying different subsets
+Podemos asignar variables adicionales a varias características de la trama:
+
+- estética
+  - forma
+  - color
+  - tamaño
+  - alpha (transparencia)
+- facetting: pequeños paneles que muestran diferentes subconjuntos
 
 ---
 
 class: center, middle
 
-# Aesthetics
+# Estética (Aesthetics)
 
 ---
 
-## Aesthetics options
+## Opciones estéticas
 
-Visual characteristics of plotting characters that can be **mapped to a specific variable**
-in the data are
+Características visuales de trazar caracteres que pueden ** asignarse a una variable específica **
+en los datos son
 
-- `color`
-- `size`
-- `shape`
-- `alpha` (transparency)
+- color = `color`
+- tamaño = `size`
+- forma = `shape`
+- transparencia = `alpha`
 
 ---
 
-## Mass vs. height + gender
+## Masa vs. altura + género
 
 ```{r fig.width = 7, fig.height=3.5, warning=FALSE}
 ggplot(data = starwars, mapping = aes(x = height, y = mass, color = gender)) +
@@ -280,9 +283,9 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass, color = gender)) +
 
 ---
 
-## Mass vs. height + gender
+## Masa vs. altura + género
 
-Let's map the size to birth_year:
+Asignemos el tamaño a birth_year:
 
 ```{r fig.width = 7, fig.height=3.5, warning=FALSE}
 ggplot(data = starwars, mapping = aes(x = height, y = mass, color = gender, 
@@ -293,10 +296,9 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass, color = gender,
 
 ---
 
-## Mass vs. height + gender
+## Masa vs. altura + género
 
-Let's now increase the size of all points **not** based on the values of a 
-variable in the data:
+Aumentemos ahora el tamaño de todos los puntos ** no ** en función de los valores de una variable en los datos:
 
 ```{r fig.width = 7, fig.height=3.5, warning=FALSE}
 ggplot(data = starwars, mapping = aes(x = height, y = mass, color = gender)) +
@@ -305,19 +307,19 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass, color = gender)) +
 
 ---
 
-## Aesthetics summary
+## Resumen estética
 
-- Continuous variable are measured on a continuous scale
-- Discrete variables are measured (or often counted) on a discrete scale
+- Las variables continuas se miden en una escala continua
+- Las variables discretas se miden (o a menudo se cuentan) en una escala discreta
 
-aesthetics    | discrete                 | continuous
-------------- | ------------------------ | ------------
-color         | rainbow of colors        | gradient
-size          | discrete steps           | linear mapping between radius and value
-shape         | different shape for each | shouldn't (and doesn't) work
+estética      | discreto                  | continuo
+------------- | ------------------------- | ------------
+color         | arcoiris de colores       | gradiente
+tamaño        | pasos discretos           | mapeo lineal entre radio y valor
+forma         | forma diferente para cada uno | no debería (y no funciona)
 
-- Use aesthetics for mapping features of a plot to a variable, define the 
-features in the geom for customization **not** mapped to a variable
+- Utilice la estética para mapear las características de una gráfica a una variable, defina las
+características en el geom para modificaciones ** no ** asignadas a una variable
 
 ---
 
@@ -327,29 +329,29 @@ class: center, middle
 
 ---
 
-## Faceting options
+## Opciones de Faceting
 
-- Smaller plots that display different subsets of the data
-- Useful for exploring conditional relationships and large data
+- Gráficas más pequeñas que muestran diferentes subconjuntos de datos
+- Útil para explorar relaciones condicionales y datos de gran tamaño.
 
 .small[
 ```{r fig.height=2.5, fig.width=6, warning=FALSE}
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   facet_grid(. ~ gender) + #<<
   geom_point() +
-  labs(title = "Mass vs. height of Starwars characters",
-       subtitle = "Faceted by gender",  #<<
-       x = "Height (cm)", y = "Weight (kg)")
+  labs(title = "Masa vs. altura de personajes de Starwars",
+       subtitle = "Faceted por genero",  #<<
+       x = "Altura (cm)", y = "Masa (kg)")
 ```
 ]
 
 ---
 
-## Dive further...
+## Exploremos más...
 
 .question[
-In the next few slides describe what each plot displays. Think about
-how the code relates to the output.
+En las siguientes diapositivas describa lo que muestra cada gráfico. Pensar en
+cómo se relaciona el código con el output.
 ]
 
 --
@@ -357,9 +359,7 @@ how the code relates to the output.
 <br><br><br>
 
 .alert[
-The plots in the next few slides do not have proper titles, axis labels, etc. 
-because we want you to figure out what's happening in the plots. But you 
-should always label your plots!
+Las graficas en las siguientes diapositivas no tienen títulos, etiquetas de eje, etc. porque queremos que descubras lo que sucede en cada una. Pero tu siempre debe etiquetar tus graficas!
 ]
 
 ---
@@ -388,62 +388,62 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 
 ---
 
-## Facet summary
+## Resumen de Facetas
 
 - `facet_grid()`: 
-    - 2d grid
-    - `rows ~ cols`
-    - use `.` for no split
-- `facet_wrap()`: 1d ribbon wrapped into 2d
+    - Grid en n2d
+    - `filas ~ columnas`
+    - usa `.` para no dividir
+- `facet_wrap()`: cinta 1d envuelta en 2d
 
 ---
 
-## <i class="fas fa-laptop"></i> `AE 03 - Starwars`
+## <i class="fas fa-laptop"></i> `EA 03 - Starwars`
 
-- Go to RStudio Cloud and make a copy of the application exercise project and launch it.
-- Open and knit the R Markdown document
-
----
-
-class: center, middle
-
-# Identifying variables
-
----
-
-## Number of variables involved
-
-* Univariate data analysis - distribution of single variable
-* Bivariate data analysis - relationship between two variables
-* Multivariate data analysis - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others
-
----
-
-## Types of variables
-
-- **Numerical variables** can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively. 
-- If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
+- Vaya a RStudio Cloud y haga una copia del proyecto de ejercicio de la aplicación y ejecútelo.
+- Abrir y tejer el documento R Markdown
 
 ---
 
 class: center, middle
 
-# Visualizing numerical data
+# Identificando variables
 
 ---
 
-## Describing shapes of numerical distributions
+## Número de variables involucradas
 
-* shape:
-    * skewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)
-    * modality: unimodal, bimodal, multimodal, uniform
-* center: mean (`mean`), median (`median`), mode (not always useful)
-* spread: range (`range`), standard deviation (`sd`), inter-quartile range (`IQR`)
-* unusal observations
+* Análisis de datos univariados: distribución de una sola variable
+* Análisis de datos bivariados: relación entre dos variables
+* Análisis de datos multivariados: relación entre muchas variables a la vez, generalmente centrada en la relación entre dos mientras se condiciona para otras
 
 ---
 
-## Histograms
+## Tipos de variables
+
+- ** Las variables numéricas ** pueden clasificarse como ** continuas ** o ** discretas ** en función de si la variable puede tomar un número infinito de valores o solo números enteros no negativos, respectivamente.
+- Si la variable es ** categórica **, podemos determinar si es ** ordinal ** en función de si los niveles tienen o no un orden natural.
+
+---
+
+class: center, middle
+
+# Visualizando datos numéricos
+
+---
+
+## Describiendo formas de distribuciones numéricas
+
+* forma:
+  * sesgo: sesgado a la derecha, sesgado a la izquierda, simétrico (el sesgo está al lado de la cola más larga)
+  * modalidad: unimodal, bimodal, multimodal, uniforme
+* centro: media (`mean`), mediana (` median`), moda (no siempre útil)
+* spread: rango (`rango`), desviación estándar (` sd`), rango intercuartil (`IQR`)
+* observaciones inusuales
+
+---
+
+## Histogramas
 
 .small[
 ```{r fig.width = 7, fig.height=4}
@@ -454,7 +454,7 @@ ggplot(data = starwars, mapping = aes(x = height)) +
 
 ---
 
-## Density plots
+## Graficas de Densidad
 
 .small[
 ```{r fig.width = 7, fig.height=4}
@@ -465,7 +465,7 @@ ggplot(data = starwars, mapping = aes(x = height)) +
 
 ---
 
-## Side-by-side box plots
+## Boxplots lado a lado
 
 .small[
 ```{r fig.width = 7, fig.height=4}
@@ -478,11 +478,11 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
 
 class: center, middle
 
-# Visualizing categorical data
+# Visualizando datos categoricos
 
 ---
 
-## Bar plots
+## Graficas de barras
 
 .small[
 ```{r fig.width = 7, fig.height=4}
@@ -493,7 +493,7 @@ ggplot(data = starwars, mapping = aes(x = gender)) +
 
 ---
 
-## Segmented bar plots, counts
+## Graficas de barra segmentadas, conteos
 
 .small[
 ```{r fig.width = 7, fig.height=4}
@@ -504,7 +504,7 @@ ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color)) +
 
 ---
 
-## Segmented bar plots, proportions
+## Graficas de barra segmentadas, proporciones
 
 .small[
 ```{r fig.width = 7, fig.height=4}
@@ -516,10 +516,10 @@ ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color)) +
 
 ---
 
-## Which bar plot is more appropriate?
+## Que grafica de barra es mas apropiada?
 
 .question[
-Which bar plot is a more useful representation for visualizing the relationship between gender and hair color?
+¿Qué grafica de barras es una representación más útil para visualizar la relación entre género y color de pelo?
 ]
 
 ```{r}
@@ -534,5 +534,5 @@ ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color2)) +
   geom_bar()
 ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color2)) +
   geom_bar(position = "fill") +
-  labs(y = "proportion")
+  labs(y = "proporcion")
 ```
